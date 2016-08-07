@@ -1,0 +1,92 @@
+{
+  "name": "searchfavs-com",
+  "private": true,
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "npm run build && firebase deploy",
+    "phoenix": "rimraf node_modules && npm it",
+    "build": "rimraf public && cross-env NODE_ENV=production webpack",
+    "co": "git-cz",
+    "start": "cross-env NODE_ENV=development hjs-dev-server",
+    "lint": "standard",
+    "up": "updtr --test-stdout --save-exact"
+  },
+  "keywords": [],
+  "author": "Carlos Villuendas <carlosvillu@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-eslint": "6.1.2",
+    "babel-loader": "6.2.4",
+    "babel-plugin-syntax-async-functions": "6.13.0",
+    "babel-plugin-transform-regenerator": "6.11.4",
+    "babel-plugin-transform-runtime": "6.12.0",
+    "babel-preset-es2015": "6.13.2",
+    "babel-preset-react": "6.11.1",
+    "babel-preset-react-hmre": "1.1.1",
+    "babel-preset-stage-3": "6.11.0",
+    "commitizen": "2.8.5",
+    "cross-env": "2.0.0",
+    "css-loader": "0.23.1",
+    "cz-conventional-changelog": "1.1.6",
+    "deepmerge": "0.2.10",
+    "file-loader": "0.9.0",
+    "ghooks": "1.3.2",
+    "hjs-webpack": "8.3.0",
+    "image-webpack-loader": "2.0.0",
+    "json-loader": "0.5.4",
+    "node-sass": "3.8.0",
+    "npm-run-all": "2.3.0",
+    "postcss-loader": "0.9.1",
+    "raw-loader": "0.5.1",
+    "rimraf": "2.5.4",
+    "sass-loader": "4.0.0",
+    "standard": "7.1.2",
+    "style-loader": "0.13.1",
+    "updtr": "0.2.1",
+    "validate-commit-msg": "2.6.1",
+    "webpack": "2.1.0-beta.4"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm-run-all lint",
+      "commit-msg": "validate-commit-msg"
+    },
+    "commitizen": {
+      "path": "node_modules/cz-conventional-changelog"
+    }
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "globals": []
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react",
+      "stage-3"
+    ],
+    "plugins": [
+      "transform-runtime",
+      "syntax-async-functions",
+      "transform-regenerator"
+    ],
+    "env": {
+      "development": {
+        "presets": [
+          "react-hmre"
+        ]
+      }
+    }
+  },
+  "dependencies": {
+    "babel-polyfill": "6.13.0",
+    "debug": "2.2.0",
+    "isomorphic-fetch": "2.2.1",
+    "normalize.css": "4.2.0",
+    "react": "15.3.0",
+    "react-dom": "15.3.0",
+    "react-router": "2.6.1"
+  }
+}
