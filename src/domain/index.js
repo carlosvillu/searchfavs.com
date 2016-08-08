@@ -8,6 +8,7 @@ class SearchFavs {
     this._map = {}
     this._map['current_user_use_case'] = UserFactory.currentUserUseCase()
     this._map['signin_with_twitter_user_use_case'] = UserFactory.signinWithTwitterUserUseCase()
+    this._map['logout_current_user_use_case'] = UserFactory.logoutCurrentUserUseCase()
   }
 
   get (key) {

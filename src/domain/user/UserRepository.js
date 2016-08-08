@@ -8,4 +8,8 @@ export default class UserRepository extends Repository {
   signinWithTwitter () {
     throw new Error('[UserRepository#signinWithTwitter] must be implemented')
   }
+
+  logoutUser () {
+    throw new Error('[UserRepository#logoutUser] must be implemented')
+  }
 }
