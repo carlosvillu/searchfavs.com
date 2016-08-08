@@ -7,15 +7,7 @@ import SearchFavs from './domain'
 const logout = (nextState, replace, cb) => {
   SearchFavs.get('logout_current_user_use_case')
     .execute()
-    .catch(() => {
-      window.firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          replace('/')
-          cb()
-        })
-    })
+    .then(() => document.location.href = '/') // eslint-disable-line
 }
 
 const requireAuth = (nextState, replace, cb) => {
@@ -26,6 +18,15 @@ const requireAuth = (nextState, replace, cb) => {
       replace('/signin')
       cb()
     })
+}
+
+const redirectToHome = (nextState, replace, cb) => {
+  SearchFavs.get('current_user_use_case')
+    .execute()
+    .then(user => {
+      replace('/')
+      cb()
+    }).catch(() => cb())
 }
 
 const loadLayoutPage =
@@ -43,7 +44,7 @@ const loadSigninPage =
 export default (
   <Route>
     <Route getComponent={loadLayoutPage} >
-      <Route path='/signin' getComponent={loadSigninPage} />
+      <Route path='/signin' getComponent={loadSigninPage} onEnter={redirectToHome} />
       <Route path='/logout' onEnter={logout} />
       <Route path='/' onEnter={requireAuth}>
         <IndexRoute getComponent={loadHomePage} />

@@ -5,6 +5,7 @@ import UserEntity from '../user/UserEntity'
 
 import CurrentUserUseCase from '../user/CurrentUserUseCase'
 import SigninWithTwitterUserUseCase from '../user/SigninWithTwitterUserUseCase'
+import LogoutCurrentUserUseCase from '../user/LogoutCurrentUserUseCase'
 
 import FireBaseUserRepository from '../user/FireBaseUserRepository'
 
@@ -25,6 +26,13 @@ export default class UserFactory {
     return new SigninWithTwitterUserUseCase({
       repository: UserFactory.firebaseRepository(),
       log: factoryLogger({prefix: 'SigninWithTwitterUserUseCase'})
+    })
+  }
+
+  static logoutCurrentUserUseCase () {
+    return new LogoutCurrentUserUseCase({
+      repository: UserFactory.firebaseRepository(),
+      log: factoryLogger({prefix: 'LogoutCurrentUserUseCase'})
     })
   }
 
