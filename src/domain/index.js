@@ -1,6 +1,7 @@
 import config from './config'
 
 import UserFactory from './factories/user'
+import TwitterFactory from './factories/twitter'
 
 class SearchFavs {
   constructor () {
@@ -9,6 +10,8 @@ class SearchFavs {
     this._map['current_user_use_case'] = UserFactory.currentUserUseCase()
     this._map['signin_with_twitter_user_use_case'] = UserFactory.signinWithTwitterUserUseCase()
     this._map['logout_current_user_use_case'] = UserFactory.logoutCurrentUserUseCase()
+
+    this._map['favorites_twitter_use_case'] = TwitterFactory.favoritesTwitterUseCase()
   }
 
   get (key) {
