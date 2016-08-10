@@ -5,13 +5,14 @@ class ListFavs extends React.Component {
     super(props, ctxt)
 
     this.domain = ctxt.domain
-    this.state = {favs: false}
+    this._log = ctxt.factoryLogger({prefix: 'ListFavs'})
+    this.state = {favs: []}
   }
 
   async componentDidMount () {
     const user = await this.domain.get('current_user_use_case').execute()
-    const favorites$ = await this.domain.get('favorites_twitter_use_case').execute({user})
-    return favorites$
+    const favorites = await this.domain.get('favorites_twitter_use_case').execute({user})
+    this.setState({ favs: [].concat(this.state.favs).concat(favorites) })
   }
 
   render () {
@@ -19,8 +20,8 @@ class ListFavs extends React.Component {
     return (
       <ul className='ListFavs'>
         {
-          favs ? favs.map((fav, index) => <li className='Fav' key={index}>fav.body</li>)
-               : <li className='Fav'>Obteniendo Favs</li>
+          favs.length !== 0 ? favs.map((fav, index) => <li className='Fav' key={index}>{fav.text}</li>)
+                            : <li className='Fav'>Obteniendo Favs</li>
         }
       </ul>
     )

@@ -14,8 +14,10 @@ export default class FavoritesTwitterUseCase extends UseCase {
    * @return Stream
   * */
   execute ({user}) {
-    const {token, secret} = user
     this._log('Getting favorites for %j', user)
-    return this._repository.favorites({token, secret})
+    return this._repository
+            .token(user)
+            .secret(user)
+            .favorites()
   }
 }

@@ -8,20 +8,28 @@ import FavoritesTwitterUseCase from '../twitter/FavoritesTwitterUseCase'
 import HTTPTwitterRepository from '../twitter/HTTPTwitterRepository'
 
 import SSETwitterDataSource from '../twitter/HTTPTwitterRepository/SSETwitterDataSource'
+import FetchTwitterDataSource from '../twitter/HTTPTwitterRepository/FetchTwitterDataSource'
 
 export default class TwitterFactory {
 
   static favoritesTwitterUseCase () {
     return new FavoritesTwitterUseCase({
-      repository: TwitterFactory.hTTPTwitterRepository(),
+      repository: TwitterFactory.hTTPTwitterRepository({dataSource: 'fetchTwitterDataSource'}),
       log: factoryLogger({prefix: 'FavoritesTwitterUseCase'})
     })
   }
 
-  static hTTPTwitterRepository () {
+  static hTTPTwitterRepository ({dataSource}) {
     return new HTTPTwitterRepository({
-      dataSource: TwitterFactory.sSETwitterDataSource(),
+      dataSource: TwitterFactory[dataSource](),
       log: factoryLogger({prefix: 'HTTPTwitterRepository'})
+    })
+  }
+
+  static fetchTwitterDataSource () {
+    return new FetchTwitterDataSource({
+      config,
+      log: factoryLogger({prefix: 'FetchTwitterDataSource'})
     })
   }
 
