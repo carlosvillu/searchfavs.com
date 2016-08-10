@@ -1,6 +1,13 @@
+import development from './development'
+import production from './production'
+
+let base
+if (process.env.NODE_ENV === 'development') { base = development }
+if (process.env.NODE_ENV === 'production') { base = production }
+
 class Config {
   constructor () {
-    this._config = {}
+    this._config = Object.assign({}, base)
   }
 
   get (key) {

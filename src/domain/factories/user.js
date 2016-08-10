@@ -9,10 +9,13 @@ import LogoutCurrentUserUseCase from '../user/LogoutCurrentUserUseCase'
 
 import FireBaseUserRepository from '../user/FireBaseUserRepository'
 
+import LocaStoregaUserDataSource from '../user/FireBaseUserRepository/LocaStoregaUserDataSource'
+import EmptyUserDataSource from '../user/FireBaseUserRepository/EmptyUserDataSource'
+
 export default class UserFactory {
 
-  static userEntity ({name, avatar, uid: id} = {}) {
-    return new UserEntity({name, avatar, uid: id})
+  static userEntity ({name, avatar, id, token, secret} = {}) {
+    return new UserEntity({name, avatar, id, token, secret})
   }
 
   static currentUserUseCase () {
@@ -39,7 +42,22 @@ export default class UserFactory {
   static firebaseRepository () {
     return new FireBaseUserRepository({
       log: factoryLogger({prefix: 'FireBaseUserRepository'}),
+      dataSource: typeof localStorage === 'object' ? UserFactory.locaStoregaUserDataSource()
+                                                   : UserFactory.emptyUserDataSource(),
       config
+    })
+  }
+
+  static locaStoregaUserDataSource () {
+    return new LocaStoregaUserDataSource({
+      storage: window.localStorage,
+      log: factoryLogger({prefix: 'LocaStoregaUserDataSource'})
+    })
+  }
+
+  static emptyUserDataSource () {
+    return new EmptyUserDataSource({
+      log: factoryLogger({prefix: 'EmptyUserDataSource'})
     })
   }
 
