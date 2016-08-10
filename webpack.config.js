@@ -81,6 +81,12 @@ if (isProd) {
     })
   )
 
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': {API_HOST: JSON.stringify('https://favorites-service-apdyapobzp.now.sh')}
+    })
+  )
+
   config.output.publicPath = PUBLIC_PATH
 
   // Remove Dedupe plugin
