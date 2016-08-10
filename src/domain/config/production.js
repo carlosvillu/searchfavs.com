@@ -1,3 +1,3 @@
 export default {
-  api: '//api.searchfavs.dev'
+  api: process.env.API_HOST
 }
