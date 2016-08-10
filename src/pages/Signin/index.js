@@ -1,4 +1,5 @@
 import React from 'react'
+import './Signin.scss'
 
 const Signin = (_, {domain, factoryLogger}) => {
   const _log = factoryLogger({prefix: 'Signin'})
@@ -7,7 +8,7 @@ const Signin = (_, {domain, factoryLogger}) => {
     domain.get('signin_with_twitter_user_use_case').execute()
   }
   return (
-    <div className='containerer'>
+    <div className='Signin containerer'>
       <div className='jumbotron text-center'>
         <h1>searchfavs.com</h1>
         <p>Encontrá tus favoritos</p>
