@@ -8,7 +8,7 @@ export default class FetchTwitterDataSource extends TwitterDataSource {
     this._fetcher = window.fetch
     this._config = config
   }
-  
+
   favorites ({token, secret}) {
     const url = `${this._config.get('api')}/favs?token=${token}&secret=${secret}`
     this._log(`Getting favorites from ${url}`)

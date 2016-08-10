@@ -19,6 +19,14 @@ export default class TwitterFactory {
     })
   }
 
+  // Lo dejo aquí para acordarme cuando lo implemente
+  // static statusesTwitterUseCase () {
+  //   return new StatusesTwitterUseCase({
+  //     repository: TwitterFactory.hTTPTwitterRepository({dataSource: 'sSETwitterDataSource'}),
+  //     log: factoryLogger({prefix: 'StatusesTwitterUseCase'})
+  //   })
+  // }
+
   static hTTPTwitterRepository ({dataSource}) {
     return new HTTPTwitterRepository({
       dataSource: TwitterFactory[dataSource](),
