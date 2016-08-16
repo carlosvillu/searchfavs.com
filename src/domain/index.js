@@ -7,11 +7,13 @@ class SearchFavs {
   constructor () {
     this._config = config
     this._map = {}
+
     this._map['current_user_use_case'] = UserFactory.currentUserUseCase()
     this._map['signin_with_twitter_user_use_case'] = UserFactory.signinWithTwitterUserUseCase()
     this._map['logout_current_user_use_case'] = UserFactory.logoutCurrentUserUseCase()
 
     this._map['favorites_twitter_use_case'] = TwitterFactory.favoritesTwitterUseCase()
+    this._map['save_tweets_use_case'] = TwitterFactory.saveTweetsUseCase()
   }
 
   get (key) {
