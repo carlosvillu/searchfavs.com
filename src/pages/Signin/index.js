@@ -8,7 +8,7 @@ const Signin = (_, {domain, factoryLogger}) => {
     domain.get('signin_with_twitter_user_use_case').execute()
   }
   return (
-    <div className='Signin containerer'>
+    <div className='Signin container'>
       <div className='jumbotron text-center'>
         <h1>searchfavs.com</h1>
         <p>Encontrá tus favoritos</p>
