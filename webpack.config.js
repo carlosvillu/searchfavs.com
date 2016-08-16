@@ -20,9 +20,6 @@ const template = (context) => {
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/3211b50b31.css" media="all">
         <link href="${PUBLIC_PATH}${context.css}" rel="stylesheet">
-        <style>
-         .jumbotron.text-center{background-color: #fff;}
-        </style>
       </head>
       <body>
         <div id="root"></div>

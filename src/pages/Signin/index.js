@@ -1,4 +1,5 @@
 import React from 'react'
+import './Signin.scss'
 
 const Signin = (_, {domain, factoryLogger}) => {
   const _log = factoryLogger({prefix: 'Signin'})
@@ -8,15 +9,17 @@ const Signin = (_, {domain, factoryLogger}) => {
   }
   return (
     <div className='containerer'>
-      <div className='jumbotron text-center'>
-        <h1>searchfavs.com</h1>
-        <p>Encontrá tus favoritos</p>
-        <button className='Signin btn btn-primary btn-lg' type='button' aria-label='Left Align'>
-          <span onClick={loginUser} >
-            <i className='fa fa-twitter' aria-hidden='true'></i>
-            &nbsp; Ingresar
-          </span>
-        </button>
+      <div className='Signin containerer'>    
+        <div className='jumbotron text-center'>
+          <h1>searchfavs.com</h1>
+          <p>Encontrá tus favoritos</p>
+          <button className='Signin btn btn-primary btn-lg' type='button' aria-label='Left Align'>
+            <span onClick={loginUser} >
+              <i className='fa fa-twitter' aria-hidden='true'></i>
+              &nbsp; Ingresar
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   )
