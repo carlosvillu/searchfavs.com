@@ -1,4 +1,14 @@
 import TwitterRepository from '../TwitterRepository'
+import TwitterFactory from '../../factories/twitter'
+
+const fromTweetAPIToEntity = ({id, text, entities} = {}) => {
+  return TwitterFactory.tweetEntity({
+    id,
+    text,
+    urls: (entities.urls || []).map(url => url.expanded_url),
+    media: (entities.media || []).map(media => ({type: media.type, url: media.media_url}))
+  })
+}
 
 export default class HTTPTwitterRepository extends TwitterRepository {
   constructor ({dataSource, log} = {}) {
@@ -20,7 +30,9 @@ export default class HTTPTwitterRepository extends TwitterRepository {
 
   favorites () {
     this._log('Getting favorites from %s', this._dataSource)
-    return this._dataSource.favorites({token: this._token, secret: this._secret})
+    return this._dataSource
+            .favorites({token: this._token, secret: this._secret})
+            .then(favorites => favorites.map(fromTweetAPIToEntity))
   }
 
   statuses ({track}) {

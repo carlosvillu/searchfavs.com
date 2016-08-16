@@ -12,6 +12,8 @@ class ListFavs extends React.Component {
   async componentDidMount () {
     const user = await this.domain.get('current_user_use_case').execute()
     const favorites = await this.domain.get('favorites_twitter_use_case').execute({user})
+    this._log(favorites)
+    this.domain.get('save_tweets_use_case').execute({tweets: favorites, user})
     this.setState({ favs: [].concat(this.state.favs).concat(favorites) })
   }
 
