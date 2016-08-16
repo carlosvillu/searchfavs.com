@@ -58,12 +58,20 @@ config.module.loaders.push({
   ]
 })
 
+if (isDev) {
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': {NODE_ENV: JSON.stringify('development')}
+    })
+  )
+}
+
 if (isProd) {
   config.entry = {
     main: config.entry,
     vendor: [
       'react', 'react-dom', 'babel-polyfill', 'isomorphic-fetch',
-      'debug', 'react-router'
+      'debug', 'react-router', 'rx-lite'
     ]
   }
 
@@ -72,6 +80,12 @@ if (isProd) {
       name: 'vendor',
       minChunks: Infinity,
       filename: 'vendor.bundle.js'
+    })
+  )
+
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': {API_HOST: JSON.stringify('https://favorites-service-apdyapobzp.now.sh')}
     })
   )
 
