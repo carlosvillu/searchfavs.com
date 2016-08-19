@@ -1,5 +1,9 @@
 {
   "rules": {
+    "tweets": {
+      ".read": true,
+      ".write": true
+    },
     "users": {
       "$uid": {
         ".read": "$uid === auth.uid",

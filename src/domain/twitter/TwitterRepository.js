@@ -17,4 +17,8 @@ export default class TwitterRepository extends Repository {
   favorites () {
     throw new Error('[TwitterRepository#favorites] must be implemented')
   }
+
+  save () {
+    throw new Error('[TwitterRepository#save] must be implemented')
+  }
 }
