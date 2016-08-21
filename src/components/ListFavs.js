@@ -1,5 +1,6 @@
 import React from 'react'
 import uniqby from 'lodash.uniqby'
+import xorby from 'lodash.xorby'
 
 class ListFavs extends React.Component {
   constructor (props, ctxt) {
@@ -22,6 +23,10 @@ class ListFavs extends React.Component {
       const favoritesTweeter = await this.domain.get('favorites_tweets_twitter_use_case').execute({user})
       if (favoritesTweeter) {
         this.domain.get('save_tweets_user_use_case').execute({tweets: favoritesTweeter, user})
+        this.domain.get('index_tweets_search_use_case').execute({
+          user,
+          tweets: xorby(this.state.favs, favoritesTweeter || [], 'id')
+        })
         this.setState({
           favs: uniqby(this.state.favs.concat(favoritesTweeter || []), 'id').sort((a, b) => b.id - a.id)
         })

@@ -71,7 +71,8 @@ if (isProd) {
     main: config.entry,
     vendor: [
       'react', 'react-dom', 'babel-polyfill', 'isomorphic-fetch',
-      'debug', 'react-router', 'rx-lite', 'lodash.union', 'lodash.uniqby'
+      'debug', 'react-router', 'rx-lite', 'lodash.union', 'lodash.uniqby',
+      'lodash.xorby'
     ]
   }
 
