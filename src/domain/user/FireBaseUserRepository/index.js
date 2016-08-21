@@ -1,10 +1,17 @@
+import union from 'lodash.union'
+
 import UserRepository from '../UserRepository'
 import UserFactory from '../../factories/user'
+import TwitterFactory from '../../factories/twitter'
 
 const fromUserFireBaseToEntity = ({user, token, secret} = {}) => {
   const {displayName: name, photoURL: avatar, uid: id} = user
   if (!id) { return false }
   return UserFactory.userEntity({name, avatar, id, token, secret})
+}
+
+const fromTweetFireBaseToEntity = ({id, text, urls, media} = {}) => {
+  return TwitterFactory.tweetEntity({id, text, urls, media})
 }
 
 export default class FireBaseUserRepository extends UserRepository {
@@ -47,5 +54,36 @@ export default class FireBaseUserRepository extends UserRepository {
                         .signOut()
     await this._dataSource.removeCredentials()
     return Promise.resolve()
+  }
+
+  async saveTweets ({tweets, user} = {}) {
+    this._log('Saving %j', tweets.length)
+    const firebase = this._config.get('firebase')
+
+    const saveTweets = tweets.map(tweet => firebase.database().ref(`tweets/${tweet.id}`).set(tweet.toJSON()))
+
+    const userTweets = await this.tweets({user})
+    const ids = union(
+      (userTweets || []).map(twt => twt.id),
+      tweets.map(twt => twt.id)
+    )
+    const addTweetsToUser = firebase.database().ref(`users/${user.id}/tweets`).set(ids)
+
+    return Promise.all(
+      saveTweets.concat(addTweetsToUser)
+    )
+  }
+
+  async tweets ({user} = {}) {
+    const firebase = this._config.get('firebase')
+
+    this._log('Get tweet for the user')
+    const userTweetsSnapshot = await firebase.database().ref(`users/${user.id}/tweets`).once('value')
+    const ids = userTweetsSnapshot.val() || []
+    return await Promise.all(
+      ids.map(
+        id => firebase.database().ref(`tweets/${id}`).once('value').then(snapshot => snapshot.val())
+      )
+    ).then(tweets => tweets.map(fromTweetFireBaseToEntity))
   }
 }

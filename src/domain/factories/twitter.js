@@ -5,11 +5,9 @@ import factoryLogger from '../logger'
 
 import TweetEntity from '../twitter/TweetEntity'
 
-import FavoritesTwitterUseCase from '../twitter/FavoritesTwitterUseCase'
-import SaveTweetsUseCase from '../twitter/SaveTweetsUseCase'
+import FavoritesTweetsTwitterUseCase from '../twitter/FavoritesTweetsTwitterUseCase'
 
 import HTTPTwitterRepository from '../twitter/HTTPTwitterRepository'
-import FireBaseTwitterRepository from '../twitter/FireBaseTwitterRepository'
 
 import SSETwitterDataSource from '../twitter/HTTPTwitterRepository/SSETwitterDataSource'
 import FetchTwitterDataSource from '../twitter/HTTPTwitterRepository/FetchTwitterDataSource'
@@ -20,16 +18,10 @@ export default class TwitterFactory {
     return new TweetEntity({id, text, urls, media})
   }
 
-  static favoritesTwitterUseCase () {
-    return new FavoritesTwitterUseCase({
+  static favoritesTweetsTwitterUseCase () {
+    return new FavoritesTweetsTwitterUseCase({
       repository: TwitterFactory.hTTPTwitterRepository({dataSource: 'fetchTwitterDataSource'}),
       log: factoryLogger({prefix: 'FavoritesTwitterUseCase'})
-    })
-  }
-
-  static saveTweetsUseCase () {
-    return new SaveTweetsUseCase({
-      repository: TwitterFactory.fireBaseTwitterRepository()
     })
   }
 
@@ -45,13 +37,6 @@ export default class TwitterFactory {
     return new HTTPTwitterRepository({
       dataSource: TwitterFactory[dataSource](),
       log: factoryLogger({prefix: 'HTTPTwitterRepository'})
-    })
-  }
-
-  static fireBaseTwitterRepository () {
-    return new FireBaseTwitterRepository({
-      config,
-      log: factoryLogger({prefix: 'FireBaseTwitterRepository'})
     })
   }
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import uniqby from 'lodash.uniqby'
 
 class ListFavs extends React.Component {
   constructor (props, ctxt) {
@@ -11,10 +12,23 @@ class ListFavs extends React.Component {
 
   async componentDidMount () {
     const user = await this.domain.get('current_user_use_case').execute()
-    const favorites = await this.domain.get('favorites_twitter_use_case').execute({user})
-    this._log(favorites)
-    this.domain.get('save_tweets_use_case').execute({tweets: favorites, user})
-    this.setState({ favs: [].concat(this.state.favs).concat(favorites) })
+
+    // Favs from User
+    const favoritesUser = await this.domain.get('tweets_user_use_case').execute({user})
+    this.setState({
+      favs: [].concat(this.state.favs).concat(favoritesUser || []).sort((a, b) => b.id - a.id)
+    }, async () => {
+      // Favs from Tweeter
+      const favoritesTweeter = await this.domain.get('favorites_tweets_twitter_use_case').execute({user})
+      if (favoritesTweeter) {
+        this.domain.get('save_tweets_user_use_case').execute({tweets: favoritesTweeter, user})
+        this.setState({
+          favs: uniqby(this.state.favs.concat(favoritesTweeter || []), 'id').sort((a, b) => b.id - a.id)
+        })
+        // this._log('favoritesTweeter %j', favoritesTweeter)
+      }
+    })
+    // this._log('favoritesUser %j', favoritesUser)
   }
 
   render () {
