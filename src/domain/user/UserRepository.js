@@ -12,4 +12,12 @@ export default class UserRepository extends Repository {
   logoutUser () {
     throw new Error('[UserRepository#logoutUser] must be implemented')
   }
+
+  saveTweets () {
+    throw new Error('[UserRepository#saveTweets] must be implemented')
+  }
+
+  tweets () {
+    throw new Error('[UserRepository#tweets] must be implemented')
+  }
 }

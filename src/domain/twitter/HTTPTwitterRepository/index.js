@@ -32,7 +32,10 @@ export default class HTTPTwitterRepository extends TwitterRepository {
     this._log('Getting favorites from %s', this._dataSource)
     return this._dataSource
             .favorites({token: this._token, secret: this._secret})
-            .then(favorites => favorites.map(fromTweetAPIToEntity))
+            .then(favorites => {
+              if (favorites.errors) { throw new Error(favorites.errors) }
+              return favorites.map(fromTweetAPIToEntity)
+            })
   }
 
   statuses ({track}) {
