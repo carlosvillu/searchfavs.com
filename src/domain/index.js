@@ -12,8 +12,9 @@ class SearchFavs {
     this._map['signin_with_twitter_user_use_case'] = UserFactory.signinWithTwitterUserUseCase()
     this._map['logout_current_user_use_case'] = UserFactory.logoutCurrentUserUseCase()
 
-    this._map['favorites_twitter_use_case'] = TwitterFactory.favoritesTwitterUseCase()
-    this._map['save_tweets_use_case'] = TwitterFactory.saveTweetsUseCase()
+    this._map['favorites_tweets_twitter_use_case'] = TwitterFactory.favoritesTweetsTwitterUseCase()
+    this._map['save_tweets_user_use_case'] = UserFactory.saveTweetsUserUseCase()
+    this._map['tweets_user_use_case'] = UserFactory.tweetsUserUseCase()
   }
 
   get (key) {

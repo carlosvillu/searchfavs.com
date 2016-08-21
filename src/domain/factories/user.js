@@ -6,6 +6,8 @@ import UserEntity from '../user/UserEntity'
 import CurrentUserUseCase from '../user/CurrentUserUseCase'
 import SigninWithTwitterUserUseCase from '../user/SigninWithTwitterUserUseCase'
 import LogoutCurrentUserUseCase from '../user/LogoutCurrentUserUseCase'
+import SaveTweetsUserUseCase from '../user/SaveTweetsUserUseCase'
+import TweetsUserUseCase from '../user/TweetsUserUseCase'
 
 import FireBaseUserRepository from '../user/FireBaseUserRepository'
 
@@ -36,6 +38,20 @@ export default class UserFactory {
     return new LogoutCurrentUserUseCase({
       repository: UserFactory.firebaseRepository(),
       log: factoryLogger({prefix: 'LogoutCurrentUserUseCase'})
+    })
+  }
+
+  static saveTweetsUserUseCase () {
+    return new SaveTweetsUserUseCase({
+      repository: UserFactory.firebaseRepository(),
+      log: factoryLogger({prefix: 'SaveTweetsUserUseCase'})
+    })
+  }
+
+  static tweetsUserUseCase () {
+    return new TweetsUserUseCase({
+      repository: UserFactory.firebaseRepository(),
+      log: factoryLogger({prefix: 'TweetsUserUseCase'})
     })
   }
 

@@ -1,6 +1,6 @@
 import UseCase from '../UseCase'
 
-export default class FavoritesTwitterUseCase extends UseCase {
+export default class FavoritesTweetsTwitterUseCase extends UseCase {
 
   constructor ({repository, log}) {
     super({repository, log})

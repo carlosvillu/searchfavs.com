@@ -1,6 +1,6 @@
 import UseCase from '../UseCase'
 
-export default class FavoritesTwitterUseCase extends UseCase {
+export default class SaveTweetsUserUseCase extends UseCase {
   constructor ({repository} = {}) {
     super({repository})
 
@@ -8,6 +8,7 @@ export default class FavoritesTwitterUseCase extends UseCase {
   }
 
   execute ({tweets, user} = {}) {
-    return this._repository.save({tweets, user})
+    return this._repository.saveTweets({tweets, user})
   }
 }
+
