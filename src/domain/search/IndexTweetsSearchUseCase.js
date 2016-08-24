@@ -9,7 +9,7 @@ export default class IndexTweetsSearchUseCase extends UseCase {
     this._repository = repository
   }
 
-  execute ({user, tweets}) {
+  execute ({user, tweets} = {}) {
     const index = this._mapper.from({user}).index()
     this._log('Indexing %d tweets in index %s', tweets.length, index)
     return this._repository.indexing({index, tweets})
