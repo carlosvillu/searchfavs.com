@@ -51,9 +51,6 @@ class ListTweets extends React.Component {
   render () {
     const {user, search} = this.state
 
-    console.log(user.length !== ListTweets.EMPTY_LIST_LENGTH, ListTweets.EMPTY_LIST_LENGTH)
-    console.log(search.length !== ListTweets.EMPTY_LIST_LENGTH)
-
     return (
       <ul className='ListTweets'>
         {
