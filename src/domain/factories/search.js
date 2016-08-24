@@ -2,6 +2,7 @@ import config from '../config'
 import factoryLogger from '../logger'
 
 import IndexTweetsSearchUseCase from '../search/IndexTweetsSearchUseCase'
+import SearchTweetsSearchUseCase from '../search/SearchTweetsSearchUseCase'
 
 import AlgoliaSearchRepository from '../search/AlgoliaSearchRepository'
 
@@ -14,6 +15,14 @@ export default class SearchFactory {
       repository: SearchFactory.algoliaSearchRepository(),
       mapper: SearchFactory.userToIndexMapper(),
       log: factoryLogger({prefix: 'IndexTweetsSearchUseCase'})
+    })
+  }
+
+  static searchTweetsSearchUseCase () {
+    return new SearchTweetsSearchUseCase({
+      repository: SearchFactory.algoliaSearchRepository(),
+      mapper: SearchFactory.userToIndexMapper(),
+      log: factoryLogger({prefix: 'SearchTweetsSearchUseCase'})
     })
   }
 

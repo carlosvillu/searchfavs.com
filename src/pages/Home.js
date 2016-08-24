@@ -1,12 +1,15 @@
 import React from 'react'
 import Link from 'react-router/lib/Link'
-import ListFavs from '../components/ListFavs'
+
+import ListTweets from '../components/ListTweets'
+import Search from '../components/Search'
 
 const Home = () => {
   return (
     <div className='Home'>
       Bienvenido a la web <Link to='/logout'>Logout</Link>
-      <ListFavs />
+      <Search />
+      <ListTweets />
     </div>
   )
 }
