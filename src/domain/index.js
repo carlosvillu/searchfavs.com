@@ -18,6 +18,7 @@ class SearchFavs {
     this._map['tweets_user_use_case'] = UserFactory.tweetsUserUseCase()
 
     this._map['index_tweets_search_use_case'] = SearchFactory.indexTweetsSearchUseCase()
+    this._map['search_tweets_search_use_case'] = SearchFactory.searchTweetsSearchUseCase()
   }
 
   get (key) {

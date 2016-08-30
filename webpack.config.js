@@ -72,7 +72,7 @@ if (isProd) {
     vendor: [
       'react', 'react-dom', 'babel-polyfill', 'isomorphic-fetch',
       'debug', 'react-router', 'rx-lite', 'lodash.union', 'lodash.uniqby',
-      'lodash.xorby'
+      'lodash.xorby', 'algoliasearch', '@schibstedspain/cv-decorators'
     ]
   }
 
