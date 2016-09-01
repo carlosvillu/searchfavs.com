@@ -52,15 +52,17 @@ class ListTweets extends React.Component {
     const {user, search} = this.state
 
     return (
-      <ul className='ListTweets'>
-        {
-          search.length !== ListTweets.EMPTY_LIST_LENGTH
-            ? search.map((fav, index) => <li className='Fav' key={fav.id}>{fav.text}</li>)
-            : user.length !== ListTweets.EMPTY_LIST_LENGTH
-              ? user.map((fav, index) => <li className='Fav' key={fav.id}>{fav.text}</li>)
-              : <li className='Fav'>Obteniendo Favs</li>
-        }
-      </ul>
+      <div className='col-xs-12 col-md-8 col-md-offset-2'>
+        <ul className='ListTweets list-group'>
+          {
+            search.length !== ListTweets.EMPTY_LIST_LENGTH
+              ? search.map((fav, index) => <li className='Fav list-group-item' key={fav.id}>{fav.text}</li>)
+              : user.length !== ListTweets.EMPTY_LIST_LENGTH
+                ? user.map((fav, index) => <li className='Fav list-group-item' key={fav.id}>{fav.text}</li>)
+                : <li className='Fav'>Obteniendo Favs</li>
+          }
+        </ul>
+      </div>
     )
   }
 }
