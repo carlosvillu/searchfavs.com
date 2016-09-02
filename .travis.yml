@@ -7,6 +7,7 @@ branches:
 script:
   - echo "Deploying!"
 install:
-  - npm install -g firebase-tools rimraf cross-env
+  - npm install -g firebase-tools
+  - npm install
 after_success:
   - npm run deploy -- --token $FIREBASE_TOKEN
