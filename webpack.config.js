@@ -12,7 +12,7 @@ const GA_SCRIPT = isProd ? 'analytics' : 'analytics_debug'
 
 const template = (context) => {
   return `
-    <!DOCTYPE html>
+  <!DOCTYPE html>
     <html mode="${process.env.NODE_ENV || 'development'}">
       <head>
         <meta charset="utf-8" />
@@ -63,12 +63,12 @@ config.module.loaders.push({
   ]
 })
 
-config.resolve = {
-  alias: {
-    'react': 'preact-compat',
-    'react-dom': 'preact-compat'
-  }
-}
+// config.resolve = {
+//   alias: {
+//     'react': 'preact-compat',
+//     'react-dom': 'preact-compat'
+//   }
+// }
 
 if (isDev) {
   config.plugins.push(
