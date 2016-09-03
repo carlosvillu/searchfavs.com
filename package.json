@@ -48,7 +48,8 @@
     "style-loader": "0.13.1",
     "updtr": "0.2.1",
     "validate-commit-msg": "2.8.0",
-    "webpack": "2.1.0-beta.4"
+    "webpack": "2.1.0-beta.4",
+    "webpack-visualizer-plugin": "0.1.5"
   },
   "config": {
     "ghooks": {
@@ -94,6 +95,8 @@
     "lodash.uniqby": "4.7.0",
     "lodash.xorby": "4.7.0",
     "normalize.css": "4.2.0",
+    "preact": "6.0.0",
+    "preact-compat": "3.0.0",
     "react": "15.3.1",
     "react-dom": "15.3.1",
     "react-router": "2.7.0",

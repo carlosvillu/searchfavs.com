@@ -40,6 +40,12 @@ const template = (context) => {
 const config = getConfig({
   in: 'src/app.js',
   out: 'public',
+  output: {
+    filename: '[name].[hash].js',
+    chunkFilename: '[name].[chunkhash].js',
+    cssFilename: '[name].[contenthash].css'
+
+  },
   clearBeforeBuild: true,
   html: context => {
     return {
@@ -48,8 +54,6 @@ const config = getConfig({
   }
 })
 
-config.output.filename = '[name].[hash].js'
-config.output.chunkFilename = '[name].[chunkhash].js'
 config.module.loaders.push({
   test: /.*\.(gif|png|jpe?g|svg)$/i,
   loaders: [
@@ -57,6 +61,13 @@ config.module.loaders.push({
     'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
   ]
 })
+
+config.resolve = {
+  alias: {
+    'react': 'preact-compat',
+    'react-dom': 'preact-compat'
+  }
+}
 
 if (isDev) {
   config.plugins.push(
