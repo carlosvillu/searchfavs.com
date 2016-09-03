@@ -14,7 +14,7 @@ const Signin = (_, {domain, factoryLogger}) => {
         <p>Encontrá tus favoritos</p>
         <button className='Signin btn btn-primary btn-lg' type='button' aria-label='Left Align'>
           <span onClick={loginUser} >
-            <i className='fa fa-twitter' aria-hidden='true'></i>
+            <i className='fa fa-twitter' aria-hidden='true' />
             &nbsp; Ingresar
           </span>
         </button>

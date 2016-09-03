@@ -19,7 +19,7 @@ const Home = () => {
                 <Search />
               </div>
               <div className='navbar-user'>
-                <button type='button' className='btn btn-default ' data-toggle='dropdown' data-target='#header-menu' aria-expanded='false'>
+                <button type='button' className='btn btn-default' data-toggle='dropdown' data-target='#header-menu' aria-expanded='false'>
                   <span className='sr-only'>Toggle navigation</span>
                   <span className='glyphicon glyphicon-user' />{'\u00A0'}
                 </button>
