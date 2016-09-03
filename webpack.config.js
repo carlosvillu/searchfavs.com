@@ -12,6 +12,7 @@ const GA_SCRIPT = isProd ? 'analytics' : 'analytics_debug'
 
 const template = (context) => {
   return `
+    <!DOCTYPE html>
     <html mode="${process.env.NODE_ENV || 'development'}">
       <head>
         <meta charset="utf-8" />

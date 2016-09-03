@@ -6,7 +6,6 @@ const doSearch = async (domain, evt) => {
   domain.get('search_tweets_search_use_case').execute({query, user})
 }
 
-// TODO add "<!DOCTYPE html>" to get button fix https://github.com/twbs/bootstrap/issues/10482#issuecomment-143243842
 const Search = (props, {domain, factoryLogger}) => {
   return (
     <div className='Search' role='search'>
