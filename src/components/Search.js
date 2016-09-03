@@ -8,11 +8,17 @@ const doSearch = async (domain, evt) => {
 
 const Search = (props, {domain, factoryLogger}) => {
   return (
-    <div className='Search'>
-      <input
-        type='text'
-        onChange={doSearch.bind(null, domain)}
-        placeholder='Search by favs' />
+    <div className='Search' role='search'>
+      <div className='input-group'>
+        <input className='form-control'
+          type='text'
+          onChange={doSearch.bind(null, domain)}
+          placeholder='Search by favs' />
+        <span className='input-group-btn'>
+           {'\u00A0'}<button type='button' className='btn btn-secondary' aria-label='search'><span className='glyphicon glyphicon-search' />{'\u00A0'}</button>
+        </span>
+
+      </div>
     </div>
   )
 }

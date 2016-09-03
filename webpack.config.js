@@ -12,11 +12,14 @@ const GA_SCRIPT = isProd ? 'analytics' : 'analytics_debug'
 
 const template = (context) => {
   return `
+  <!DOCTYPE html>
     <html mode="${process.env.NODE_ENV || 'development'}">
       <head>
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/3211b50b31.css" media="all">
         <link href="${PUBLIC_PATH}${context.css}" rel="stylesheet">
       </head>
       <body>
@@ -38,6 +41,12 @@ const template = (context) => {
 const config = getConfig({
   in: 'src/app.js',
   out: 'public',
+  output: {
+    filename: '[name].[hash].js',
+    chunkFilename: '[name].[chunkhash].js',
+    cssFilename: '[name].[contenthash].css'
+
+  },
   clearBeforeBuild: true,
   html: context => {
     return {
@@ -46,8 +55,6 @@ const config = getConfig({
   }
 })
 
-config.output.filename = '[name].[hash].js'
-config.output.chunkFilename = '[name].[chunkhash].js'
 config.module.loaders.push({
   test: /.*\.(gif|png|jpe?g|svg)$/i,
   loaders: [
@@ -55,6 +62,13 @@ config.module.loaders.push({
     'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
   ]
 })
+
+// config.resolve = {
+//   alias: {
+//     'react': 'preact-compat',
+//     'react-dom': 'preact-compat'
+//   }
+// }
 
 if (isDev) {
   config.plugins.push(

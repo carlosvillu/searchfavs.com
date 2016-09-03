@@ -1,4 +1,5 @@
 import React from 'react'
+import './Signin.scss'
 
 const Signin = (_, {domain, factoryLogger}) => {
   const _log = factoryLogger({prefix: 'Signin'})
@@ -7,8 +8,17 @@ const Signin = (_, {domain, factoryLogger}) => {
     domain.get('signin_with_twitter_user_use_case').execute()
   }
   return (
-    <div className='Signin'>
-      <img onClick={loginUser} src={require('./sign-in-with-twitter-gray.png')} />
+    <div className='Signin container'>
+      <div className='jumbotron text-center'>
+        <h1>searchfavs.com</h1>
+        <p>Encontrá tus favoritos</p>
+        <button className='Signin btn btn-primary btn-lg' type='button' aria-label='Left Align'>
+          <span onClick={loginUser} >
+            <i className='fa fa-twitter' aria-hidden='true' />
+            &nbsp; Ingresar
+          </span>
+        </button>
+      </div>
     </div>
   )
 }
