@@ -3,7 +3,7 @@ node_js:
   - "6.0"
 branches:
   only:
-  - master
+    - master
 script:
   - echo "Deploying!"
 install:
